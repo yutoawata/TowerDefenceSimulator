@@ -11,7 +11,7 @@ public class MeshGenerator
     /// <param name="unit_scale">頂点間の大きさ</param>
     /// <param name="texture_sprite">縦横のテクスチャの枚数</param>
     /// <returns></returns>
-    static public Mesh GenerateSquareMesh(Vector2Int resolution, float height_Limit, float unit_scale = 0.0f, int texture_sprite = 1, Texture2D height_map = null)
+    static public Mesh GenerateSquareMesh(Vector2Int resolution, float height_Limit, float unit_scale = 1.0f, int texture_sprite = 1, Texture2D height_map = null)
     {
         Mesh mesh = new Mesh();
 
@@ -38,7 +38,7 @@ public class MeshGenerator
                 }
                    
                 vertices[index] = new Vector3(posX, pixelHeight, posY);
-                Vector2 uvVector = new Vector2((float)(posX / resolution.x), (float)(posY / resolution.y));
+                Vector2 uvVector = new Vector2((float)(x * unit_scale / resolution.x), (float)(y * unit_scale / resolution.y));
                 uv[index] = uvVector * texture_sprite / unit_scale;
             }
         }
